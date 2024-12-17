@@ -1,0 +1,130 @@
+*{
+    font-family: "Overpass", sans-serif
+}
+/* Global Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f6;
+}
+
+/* Product Card Styles */
+.product-card {
+    transition: transform 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+    .product-card img {
+        height: 250px;
+        object-fit: cover;
+    }
+
+.product-card .btn {
+    background-color: #2a9d8f;
+    border-color: #2a9d8f;
+}
+
+/* Cart Item Styles */
+.cart-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.cart-item img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-right: 15px;
+    border-radius: 8px;
+}
+
+.cart-item .quantity-control {
+    display: flex;
+    align-items: center;
+}
+
+.cart-item .quantity-control button {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+/* Notification Styles */
+#notification {
+    z-index: 2050;
+    opacity: 0.9;
+}
+.product-card {
+    height: 400px; /* Consistent height */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 5px; /* Rounded corners */
+    overflow: hidden; /* Prevent overflow */
+}
+
+.product-card img {
+    width: 100%; /* Full width */
+    height: 250px; /* Fixed height for images */
+    object-fit: cover; /* Maintain aspect ratio */
+}
+
+.card-body {
+    padding: 10px; /* Inside padding */
+}
+
+.card-title {
+    font-size: 1.1em; /* Slightly larger font */
+}
+
+.card-text {
+    font-size: 0.9em; /* Standard font size */
+    height: 50px; /* Fixed height for consistency */
+    overflow: hidden; /* Hide overflow */
+}
+.carousel {
+    width: 100%; /* Adjust this to set a specific width, e.g., 800px */
+    height: 480 px; /* Set your desired height */
+    overflow: hidden; /* Hide overflow */
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This will cover the area while maintaining the aspect ratio */
+}
+.list-unstyled a {
+    font-size: 30px;
+    padding-right: 10px
+}
+/* Adjust the button position */
+.btn-primary {
+    margin-top: -10px; /* Move it higher by reducing the top margin */
+    /* Alternatively, you can use padding to adjust the button's internal space */
+    padding: 5px 10px; /* Adjust padding as needed */
+}
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .cart-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .cart-item img {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}
