@@ -182,8 +182,11 @@ button:hover {
     z-index: 2050;
     opacity: 0.9;
 }
-.imageCarousel {
-    /* overflow: hidden; */
+#imageCarousel {
+    height: 1000px;
+}
+#myCarousel{
+    height: 100%;
 }
 /* Responsive Adjustments */
 @media (max-width: 768px) {
