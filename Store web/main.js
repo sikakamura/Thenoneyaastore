@@ -104,7 +104,7 @@ class CartManager {
             const cartItemDiv = document.createElement('div');
             cartItemDiv.className = 'cart-item';
             cartItemDiv.innerHTML = `
-                <img src="${item.product.imageUrl}" alt="${item.product.name}">
+                <img src="./${item.product.imageUrl}" alt="${item.product.name}">
                 <div class="cart-item-details">
                     <h5>${item.product.name}</h5>
                     <p>Price: $${item.product.price.toFixed(2)}</p>
@@ -213,8 +213,8 @@ if (productsContainer) {
 // } else {
 //     console.error('Products container not found');
 // }
+    }
 }
-
 
 // Load Promotions
 function loadPromotions() {
@@ -224,7 +224,7 @@ function loadPromotions() {
             id: 4,
             name: 'Summer Sale - 20% Off',
             description: 'Enjoy 20% off on all summer apparel!',
-            imageUrl: 'img/mix.jpg', // Update with actual image path
+            imageUrl: './img/mix.jpg', // Update with actual image path
             originalPrice: 50,
             discountedPrice: 40
         },
@@ -263,8 +263,7 @@ function loadPromotions() {
             `;
             promotionsList.appendChild(promoElement);
         });
-    } else {
-        console.error('Promotions list not found');
-    }
+    // } else {
+    //     console.error('Promotions list not found');
+     }
    }
-}
