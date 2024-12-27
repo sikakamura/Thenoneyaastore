@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Load Products
 function loadProducts() {
     const products = [
-        new Product(1, ' Grey Sweater Shirt', 29.99, 'A cozy sweater.', 'Clothing', 'sweater.jpg'),
+        new Product(1, 'Grey Sweater Shirt',29.99,'A cozy sweater.','Clothing','sweater.jpg'),
         new Product(2, 'Blue Sweater Shirt', 19.99, 'A cozy blue sweater.', 'Clothing', 'blue-sweater.jpg'),
         new Product(3, 'White Shirt', 19.99, 'A stylish T-shirt.', 'Clothing', 'white.jpg'), 
         new Product(7, 'Sport Shirt', 19.99, 'A stylish T-shirt.', 'Clothing', 'sport.jpg'), 
@@ -180,9 +180,9 @@ function loadProducts() {
     ];
 
     const productsContainer = document.getElementById('products-container');
-const pantsContainer = document.getElementById('pants-container');
-const shoesContainer = document.getElementById('shoes-container'); 
-const watchContainer = document.getElementById('watch-container'); 
+    const pantsContainer = document.getElementById('pants-container');
+    const shoesContainer = document.getElementById('shoes-container'); 
+    const watchContainer = document.getElementById('watch-container'); 
 
 if (productsContainer) {
     products.forEach(product => {
@@ -190,7 +190,7 @@ if (productsContainer) {
         productCard.className = 'col-md-4';
         productCard.innerHTML = `
             <div class="card product-card">
-                <img src="${product.imageUrl}" class="card-img-top" alt="${product.name}">
+                <img src="./${product.imageUrl}" class="card-img-top" alt="${product.name}">
                 <div class="card-body">
                     <h5 class="card-title">${product.name}</h5>
                     <p class="card-text">Price: $${product.price.toFixed(2)}</p>
@@ -210,9 +210,9 @@ if (productsContainer) {
             watchContainer.appendChild(productCard);
         }
     });
-} else {
-    console.error('Products container not found');
-}
+// } else {
+//     console.error('Products container not found');
+// }
 }
 
 
@@ -266,4 +266,5 @@ function loadPromotions() {
     } else {
         console.error('Promotions list not found');
     }
+   }
 }
