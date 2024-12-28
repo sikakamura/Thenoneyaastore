@@ -6,11 +6,11 @@ class Product {
     this.price = price;
     this.description = description;
     this.category = category;
-    this.imageUrl = `/img/${imageUrl}`; // Update image path to img folder
+    this.imageUrl = `/img/${imageUrl}`; 
   }
 }
 
-// Cart Manager Class
+
 class CartManager {
   constructor() {
     this.cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -137,7 +137,7 @@ class CartManager {
             `;
       cartItemsContainer.appendChild(cartItemDiv);
 
-      // Add event listener for quantity changes
+
       const quantityInput = cartItemDiv.querySelector(".quantity-input");
       quantityInput.addEventListener("change", (event) => {
         const newQuantity = parseInt(event.target.value);
@@ -157,7 +157,7 @@ class CartManager {
 
 let cartManager;
 
-// Initialize CartManager
+
 document.addEventListener("DOMContentLoaded", () => {
   cartManager = new CartManager();
   loadProducts();
@@ -176,7 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// Load Products
+
 function loadProducts() {
   const products = [
     new Product(
@@ -355,7 +355,7 @@ function loadProducts() {
       "Clothing",
       "w5.jpg"
     ),
-    // Add more products as needed
+
   ];
 
   const productsContainer = document.getElementById("products-container");
@@ -386,7 +386,7 @@ function loadProducts() {
             </div>
         `;
 
-      // Separate the products into their respective containers
+
       if (product.name.includes("Shirt")) {
         productsContainer.appendChild(productCard);
       } else if (product.name.includes("Pant")) {
