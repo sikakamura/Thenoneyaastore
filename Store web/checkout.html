@@ -1,54 +1,61 @@
 <!-- checkout.html -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Checkout</title>
-    <link rel="stylesheet" href="stylesheet.css">
-</head>
-<body>
+    <link rel="stylesheet" href="stylesheet.css" />
+    <!-- Add this in your HTML <head> section -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  </head>
+  <body>
     <!-- Header Section -->
     <header>
-        <button id="back-button">Back to Cart</button>
-        <div class="store-info">
-            <div class="logo-container">
-                
-                <img src="img/blue-sweater.jpg" alt="Store Logo">  
-            </div>
-            <div class="social-links">
-                <a href="https://www.facebook.com" target="_blank">Facebook</a>
-                <a href="https://www.instagram.com" target="_blank">Instagram</a>
-                <a href="https://www.telegram.org" target="_blank">Telegram</a>
-            </div>
+      <button id="back-button">Back to Cart</button>
+      <div class="store-info">
+        <div class="logo-container">
+          <img src="img/blue-sweater.jpg" alt="Store Logo" />
         </div>
+        <div class="social-links">
+          <a href="https://www.facebook.com" target="_blank">Facebook</a>
+          <a href="https://www.instagram.com" target="_blank">Instagram</a>
+          <a href="https://www.telegram.org" target="_blank">Telegram</a>
+        </div>
+      </div>
     </header>
 
     <!-- Main Content Section -->
     <div class="checkout-container">
-        <div class="shipping-details">
-            <h2>Shipping Details</h2>
-            <form id="checkout-form">
-                <input type="text" id="name" placeholder="Name" required>
-                <input type="text" id="address" placeholder="Address" required>
-                <input type="text" id="payment" placeholder="Payment Method" required>
-                <button type="submit">Proceed to Payment</button>
-            </form>
-        </div>
+      <div class="shipping-details">
+        <h2>Shipping Details</h2>
+        <form id="checkout-form">
+          <input type="text" id="name" placeholder="Name" required />
+          <input type="text" id="address" placeholder="Address" required />
+          <input
+            type="text"
+            id="payment"
+            placeholder="Payment Method"
+            required
+          />
+          <button type="submit">Proceed to Payment</button>
+        </form>
+      </div>
 
-        <div class="order-summary">
-            <h2>Your Order</h2>
-            <ul id="order-items">
-                <!-- Dynamically populate order items -->
-            </ul>
-            <div class="totals">
-                <p>Subtotal: <span id="subtotal"></span></p>
-                <p>Shipping: <span id="shipping"></span></p>
-                <p>Total: <span id="total"></span></p>
-            </div>
+      <div class="order-summary">
+        <h2>Your Order</h2>
+        <ul id="order-items">
+          <!-- Dynamically populate order items -->
+        </ul>
+        <div class="totals">
+          <p>Subtotal: <span id="subtotal"></span></p>
+          <p>Shipping: <span id="shipping"></span></p>
+          <p>Total: <span id="total"></span></p>
         </div>
+      </div>
     </div>
-    <script src="main.js" > </script>
+    <script src="main.js"></script>
     <script src="checkout.js"></script>
-</body>
+    <script src="payment.js" ></script>
+  </body>
 </html>

@@ -1,33 +1,26 @@
-// Add this to your existing CartManager class
-class CartManager {
-    // ... your existing methods ...
-
-    processCheckout() {
-        if (this.cart.length === 0) {
-            this.showNotification("Your cart is empty. Please add items before checking out.");
-            return false;
-        }
-        
-        // Store cart data in sessionStorage for checkout page
-        sessionStorage.setItem('checkoutCart', JSON.stringify(this.cart));
-        return true;
+// Instead of declaring a new CartManager class, add this method to your existing CartManager class
+// Find your existing CartManager class and add this method to it:
+CartManager.prototype.processCheckout = function() {
+    if (this.cart.length === 0) {
+        this.showNotification("Your cart is empty. Please add items before checking out.");
+        return false;
     }
-}
+    
+    // Store cart data in sessionStorage for checkout page
+    sessionStorage.setItem('checkoutCart', JSON.stringify(this.cart));
+    return true;
+};
 
-// Update the checkout function to work with your button
+// Standalone checkout function
 function checkout() {
     if (!cartManager.processCheckout()) {
         return; // Stop if cart is empty
     }
-
-    // Save current cart state
-    sessionStorage.setItem('checkoutCart', JSON.stringify(cartManager.cart));
     
     // Redirect to checkout page
     window.location.href = "checkout.html";
 }
-
-// Add this to handle the checkout page initialization
+// Add this to your checkout.js file
 document.addEventListener('DOMContentLoaded', () => {
     // Only run this code on the checkout page
     if (window.location.pathname.includes('checkout.html')) {
@@ -69,30 +62,94 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
+        // Back button functionality
+        const backButton = document.getElementById('back-button');
+        if (backButton) {
+            backButton.addEventListener('click', () => {
+                window.location.href = 'cart.html';
+            });
+        }
+
         // Handle checkout form submission
         const checkoutForm = document.getElementById('checkout-form');
         if (checkoutForm) {
             checkoutForm.addEventListener('submit', (event) => {
                 event.preventDefault();
+                
+                const nameInput = document.getElementById('name');
+                const addressInput = document.getElementById('address');
+                const paymentInput = document.getElementById('payment');
+                const totalElement = document.getElementById('total');
+
+                // Check if all required elements exist
+                if (!nameInput || !addressInput || !paymentInput || !totalElement) {
+                    console.error('Required form elements are missing');
+                    return;
+                }
+
+                // Get the payment input value
+                const paymentMethod = paymentInput.value.trim().toLowerCase();
+                const totalAmount = parseFloat(totalElement.textContent.replace('$', ''));
+                
+                // Validate payment method
+                if (!paymentMethod) {
+                    showPaymentError('Please enter a payment method');
+                    return;
+                }
+                
+                // Validate payment method type
+                const validPaymentMethods = ['cash', 'card', 'bank transfer'];
+                if (!validPaymentMethods.includes(paymentMethod)) {
+                    showPaymentError('Please enter a valid payment method (cash, card, or bank transfer)');
+                    return;
+                }
 
                 const orderData = {
-                    name: document.getElementById('name').value,
-                    email: document.getElementById('email').value,
-                    address: document.getElementById('address').value,
-                    city: document.getElementById('city').value,
-                    state: document.getElementById('state').value,
-                    zip: document.getElementById('zip').value,
-                    items: checkoutData
+                    name: nameInput.value,
+                    address: addressInput.value,
+                    paymentMethod: paymentMethod,
+                    items: checkoutData,
+                    total: totalAmount
                 };
 
                 // Process the order
-                cartManager.cart = []; // Clear the cart
-                cartManager.saveCart(); // Save empty cart to localStorage
-                sessionStorage.removeItem('checkoutCart'); // Clear checkout data
-                
-                // Redirect to thank you page
-                window.location.href = 'thank-you.html';
+                processOrder(orderData);
             });
         }
     }
 });
+
+// Function to show payment error messages
+function showPaymentError(message) {
+    // Remove any existing error message
+    const existingError = document.querySelector('.payment-error');
+    if (existingError) {
+        existingError.remove();
+    }
+
+    // Create and show new error message
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'payment-error';
+    errorDiv.style.color = 'red';
+    errorDiv.style.marginTop = '10px';
+    errorDiv.textContent = message;
+    
+    const paymentInput = document.getElementById('payment');
+    if (paymentInput && paymentInput.parentNode) {
+        paymentInput.parentNode.insertBefore(errorDiv, paymentInput.nextSibling);
+    }
+}
+
+// Function to process the order
+function processOrder(orderData) {
+    // Clear cart and checkout data
+    const cartManager = window.cartManager;
+    if (cartManager) {
+        cartManager.cart = [];
+        cartManager.saveCart();
+    }
+    sessionStorage.removeItem('checkoutCart');
+
+    // Redirect to thank you page
+    window.location.href = 'thank-you.html';
+}
