@@ -1,4 +1,4 @@
-// promotions.js
+
 document.addEventListener('DOMContentLoaded', () => {
     const promotionsList = document.getElementById('promotions-list');
 
@@ -34,30 +34,30 @@ document.addEventListener('DOMContentLoaded', () => {
     function addToCart(product) {
         const existingProductIndex = cart.findIndex(item => item.id === product.id);
         if (existingProductIndex > -1) {
-            cart[existingProductIndex].quantity += 1; // Increment quantity if already in cart
+            cart[existingProductIndex].quantity += 1; 
         } else {
-            product.quantity = 1; // Set initial quantity
+            product.quantity = 1;
             cart.push(product); // Add new product to cart
         }
-        localStorage.setItem('cart', JSON.stringify(cart)); // Save cart to local storage
+        localStorage.setItem('cart', JSON.stringify(cart)); 
         updateCartCount(); // Update cart count display
-        showNotification(`${product.name} added to cart!`); // Notify user
+        showNotification(`${product.name} added to cart!`);
     }
 
     function updateCartCount() {
         const cartCountElement = document.getElementById('cart-count');
         if (cartCountElement) {
-            const totalItems = cart.reduce((total, item) => total + (item.quantity || 0), 0); // Sum quantities
-            cartCountElement.textContent = totalItems; // Update count display
+            const totalItems = cart.reduce((total, item) => total + (item.quantity || 0), 0);
+            cartCountElement.textContent = totalItems; 
         }
     }
 
     function showNotification(message) {
         const notification = document.getElementById('notification');
-        notification.textContent = message; // Set notification message
-        notification.style.display = 'block'; // Show notification
+        notification.textContent = message; 
+        notification.style.display = 'block'; 
         setTimeout(() => {
-            notification.style.display = 'none'; // Hide after 3 seconds
+            notification.style.display = 'none';
         }, 3000);
     }
 
@@ -78,5 +78,5 @@ document.addEventListener('DOMContentLoaded', () => {
         promotionsList.appendChild(promoElement);
     });
 
-    updateCartCount(); // Initialize cart count on load
+    updateCartCount(); 
 });
